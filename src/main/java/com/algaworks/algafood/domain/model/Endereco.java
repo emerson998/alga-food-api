@@ -4,10 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Embeddable
-@Table(schema = "food")
 public class Endereco {
 
 	@Column(name = "endereco_cep")

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class RestauranteController {
 
 	@GetMapping
 	public List<Restaurante> listar() {
+		
 		return restauranteRepository.findAll();
 	}
 
@@ -95,7 +97,6 @@ public class RestauranteController {
 		return atualizar(restauranteId, restauranteAtual);
 	}
 
-
 	private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Restaurante restauranteOrigem = objectMapper.convertValue(dadosOrigem, Restaurante.class);
@@ -104,7 +105,7 @@ public class RestauranteController {
 			Field field = ReflectionUtils.findRequiredField(Restaurante.class, nomePropriedade);
 			field.setAccessible(true);
 
-		//	Object novoValor = ReflectionUtils.findField(field, restauranteOrigem);
+			// Object novoValor = ReflectionUtils.findField(field, restauranteOrigem);
 
 //			System.out.println(nomePropriedade + " = " + valorPropriedade + " = " + novoValor);
 

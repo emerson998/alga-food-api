@@ -18,7 +18,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -26,7 +25,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(schema = "food")
 public class Restaurante implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,13 +43,16 @@ public class Restaurante implements Serializable {
 	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 
+	@JsonIgnore
 	@Embedded
-	private transient Endereco endereco;
+	private Endereco endereco;
 
+	@JsonIgnore
 	@CreationTimestamp
 	@Column(nullable = false, columnDefinition = "datetime")
 	private LocalDateTime dataCadastro;
 
+	@JsonIgnore
 	@UpdateTimestamp
 	@Column(nullable = false, columnDefinition = "dateTime")
 	private LocalDateTime dataAtualizacao;
@@ -61,8 +62,8 @@ public class Restaurante implements Serializable {
 	@JoinTable(name = "restaurante_forma_pagamento", joinColumns = @JoinColumn(name = "restaurante_id"), inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
 	private List<FormaPagamento> formasPagamento = new ArrayList<>();
 
-	@OneToMany
-	private List<Produto> produtos;
+	@OneToMany(mappedBy = "restaurantes")
+	private List<Produto> produtos = new ArrayList<>();
 
 	public Long getId() {
 		return id;
