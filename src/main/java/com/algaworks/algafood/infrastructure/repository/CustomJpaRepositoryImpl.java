@@ -1,7 +1,5 @@
 package com.algaworks.algafood.infrastructure.repository;
 
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
 
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -13,20 +11,18 @@ public class CustomJpaRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> i
 
 	private EntityManager manager;
 
-	public CustomJpaRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
+	public CustomJpaRepositoryImpl(JpaEntityInformation<T, ID> entityInformation, EntityManager entityManager) {
 		super(entityInformation, entityManager);
 
 		this.manager = entityManager;
 	}
 
 //	@Override
-//	public Optional<T> buscarPrimeiro() {
+//	public Optional<T> findFirst() {
 //		var jpql = "from " + getDomainClass().getName();
-//		
-//		T entity = manager.createQuery(jpql, getDomainClass())
-//			.setMaxResults(1)
-//			.getSingleResult();
-//		
+//
+//		T entity = manager.createQuery(jpql, getDomainClass()).setMaxResults(1).getSingleResult();
+//
 //		return Optional.ofNullable(entity);
 //	}
 

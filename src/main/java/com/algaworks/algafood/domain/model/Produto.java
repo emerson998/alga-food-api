@@ -1,7 +1,6 @@
 package com.algaworks.algafood.domain.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto implements Serializable {
@@ -30,9 +29,9 @@ public class Produto implements Serializable {
 	@Column(nullable = false)
 	private Boolean ativo;
 
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(nullable = false)
-	private List<Restaurante> restaurantes;
+	private Restaurante restaurante;
 
 	public Long getId() {
 		return id;
