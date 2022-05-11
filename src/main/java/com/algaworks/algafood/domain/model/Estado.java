@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.algaworks.algafood.core.validation.Groups;
 
 @Entity
 public class Estado implements Serializable {
@@ -16,8 +20,10 @@ public class Estado implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull(groups = Groups.EstadoId.class)
 	private Long id;
 
+	@NotBlank(message = "O campo nome estado não pode ser nulo ou vazio")
 	@Column(nullable = false)
 	private String nome;
 

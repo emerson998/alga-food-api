@@ -11,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import com.algaworks.algafood.core.validation.Groups;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -21,8 +24,10 @@ public class Cozinha implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull(groups = Groups.CozinhaId.class)
 	private Long id;
 
+	@NotBlank(message = "O campo nome cozinha não pode ser nulo ou vazio")
 	@Column(nullable = false)
 	private String nome;
 
