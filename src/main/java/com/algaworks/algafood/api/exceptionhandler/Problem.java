@@ -1,6 +1,6 @@
-package com.algaworks.algafood.api.controller.exceptionhandler;
+package com.algaworks.algafood.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import org.springframework.validation.BindingResult;
 
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Problem {
 
 	private Integer status;
-	private LocalDateTime timestamp;
+	private OffsetDateTime timestamp;
 	private String type;
 	private String title;
 	private String detail;
@@ -53,11 +53,11 @@ public class Problem {
 		return userMessage;
 	}
 
-	public LocalDateTime getTimestamp() {
+	public OffsetDateTime getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(LocalDateTime timestamp) {
+	public void setTimestamp(OffsetDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 

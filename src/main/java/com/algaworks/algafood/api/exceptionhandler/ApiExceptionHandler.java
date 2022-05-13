@@ -1,6 +1,6 @@
-package com.algaworks.algafood.api.controller.exceptionhandler;
+package com.algaworks.algafood.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -238,7 +238,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		problem.setType(problemType.getUri());
 		problem.setTitle(problemType.getTitle());
 		problem.setDetail(detail);
-		problem.setTimestamp(LocalDateTime.now());
+		problem.setTimestamp(OffsetDateTime.now());
 
 		return problem;
 

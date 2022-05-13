@@ -14,32 +14,35 @@ import com.algaworks.algafood.domain.repository.EstadoRepository;
 @Service
 public class CadastroEstadoService {
 
-	private static final String MSG_ESTADO_EM_USO = "Estado de código %d não pode ser removido, pois está em uso";
-
+	private static final String MSG_ESTADO_EM_USO 
+		= "Estado de código %d não pode ser removido, pois está em uso";
+	
 	@Autowired
 	private EstadoRepository estadoRepository;
-
-	public Estado buscarEstadoPorId(Long estadoId) {
-
-		return estadoRepository.findById(estadoId).orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
-	}
-
+	
 	@Transactional
 	public Estado salvar(Estado estado) {
 		return estadoRepository.save(estado);
 	}
-
+	
 	@Transactional
 	public void excluir(Long estadoId) {
 		try {
 			estadoRepository.deleteById(estadoId);
-
+			estadoRepository.flush();
+			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EstadoNaoEncontradoException(estadoId);
-
+		
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_ESTADO_EM_USO + estadoId));
+			throw new EntidadeEmUsoException(
+				String.format(MSG_ESTADO_EM_USO, estadoId));
 		}
 	}
 
+	public Estado buscarEstadoPorId(Long estadoId) {
+		return estadoRepository.findById(estadoId)
+			.orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
+	}
+	
 }
