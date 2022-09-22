@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -31,12 +30,18 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.algaworks.algafood.core.validation.Groups;
 import com.algaworks.algafood.core.validation.ValorZeroIncluiDescricao;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ValorZeroIncluiDescricao(valorField = "taxaFrete", descricaoField = "nome", descricaoObrigatoria = "Frete Grátis")
 public class Restaurante implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -74,86 +79,5 @@ public class Restaurante implements Serializable {
 
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public BigDecimal getTaxaFrete() {
-		return taxaFrete;
-	}
-
-	public void setTaxaFrete(BigDecimal taxaFrete) {
-		this.taxaFrete = taxaFrete;
-	}
-
-	public Cozinha getCozinha() {
-		return cozinha;
-	}
-
-	public void setCozinha(Cozinha cozinha) {
-		this.cozinha = cozinha;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<FormaPagamento> getFormasPagamento() {
-		return formasPagamento;
-	}
-
-	public void setFormasPagamento(List<FormaPagamento> formasPagamento) {
-		this.formasPagamento = formasPagamento;
-	}
-
-	public LocalDateTime getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(LocalDateTime dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public LocalDateTime getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Restaurante other = (Restaurante) obj;
-		return Objects.equals(id, other.id);
-	}
 
 }

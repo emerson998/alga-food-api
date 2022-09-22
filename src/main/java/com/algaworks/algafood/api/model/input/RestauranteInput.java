@@ -7,6 +7,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import lombok.Data;
+
+@Data
 public class RestauranteInput {
 
 	@NotBlank
@@ -19,29 +22,5 @@ public class RestauranteInput {
 	@Valid
 	@NotNull
 	private CozinhaIdInput cozinha;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public BigDecimal getTaxaFrete() {
-		return taxaFrete;
-	}
-
-	public void setTaxaFrete(BigDecimal taxaFrete) {
-		this.taxaFrete = taxaFrete;
-	}
-
-	public CozinhaIdInput getCozinha() {
-		return cozinha;
-	}
-
-	public void setCozinha(CozinhaIdInput cozinha) {
-		this.cozinha = cozinha;
-	}
 
 }
