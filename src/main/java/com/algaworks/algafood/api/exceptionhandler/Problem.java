@@ -1,12 +1,17 @@
 package com.algaworks.algafood.api.exceptionhandler;
 
 import java.time.OffsetDateTime;
-
-import org.springframework.validation.BindingResult;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+import lombok.Builder;
+import lombok.Getter;
+
+@JsonInclude(Include.NON_NULL)
+@Getter
+@Builder
 public class Problem {
 
 	private Integer status;
@@ -15,68 +20,15 @@ public class Problem {
 	private String title;
 	private String detail;
 	private String userMessage;
-	private BindingResult bindingResult;
-
-	public Integer getStatus() {
-		return status;
+	private List<Object> objects;
+	
+	@Getter
+	@Builder
+	public static class Object {
+		
+		private String name;
+		private String userMessage;
+		
 	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDetail() {
-		return detail;
-	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
-
-	public String getUserMessage() {
-		return userMessage;
-	}
-
-	public OffsetDateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(OffsetDateTime timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public BindingResult getBindingResult() {
-		return bindingResult;
-	}
-
-	public void setBindingResult(BindingResult bindingResult) {
-		this.bindingResult = bindingResult;
-	}
-
-	public Problem setUserMessage(String userMessage) {
-		this.userMessage = userMessage;
-		return this;
-	}
-
-	public Problem setFields(BindingResult bindingResult) {
-		this.bindingResult = bindingResult;
-		return this;
-	}
-
+	
 }
