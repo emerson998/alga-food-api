@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algaworks.algafood.api.model.CozinhaModel;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.model.Restaurante;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
 import com.algaworks.algafood.domain.repository.RestauranteRepository;
+import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 
 @RestController
 @RequestMapping("/teste")
@@ -23,12 +25,40 @@ public class TesteController {
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
+	
+	@Autowired 
+	private CadastroCozinhaService service;
 
 	@GetMapping("/cozinhas/por-nome")
 	public List<Cozinha> cozinhasPorNome(String nome) {
 		return cozinhaRepository.findTodasByNomeContaining(nome);
 	}
+	
+	@GetMapping("/teste/criteria")
+	public List<CozinhaModel> buscarCozinhasPorFiltroCriteria(Long id, String nome) {
+		return service.buscarCozinhasPorFiltroCriteria(id , nome);
+	}
+	
+	@GetMapping("/teste/micro-query")
+	public List<CozinhaModel> buscarCozinhasPorFiltroMicroQuery(Long id, String nome) {
+		return service.buscarCozinhasPorFiltroMicroQuery(id , nome);
+	}
+	
+	@GetMapping("/teste/spe")
+	public List<CozinhaModel> buscarCozinhasPorFiltroJpql(Long id, String nome) {
+		return service.buscarCozinhasPorFiltroJpql(id , nome);
+	}
+	
+	@GetMapping("/teste/jdbc-template")
+	public List<CozinhaModel> buscarCozinhasPorFiltroNative(Long id, String nome){
+		return service.buscarCozinhasPorFiltroNative(id , nome);
+	}
 
+	@GetMapping("/projecao-dto")
+	public List<CozinhaModel> buscarCozinhaProjectDto() {
+		return service.buscarCozinhaProjectDto();
+	}
+	
 	@GetMapping("/cozinhas/unica-por-nome")
 	public Optional<Cozinha> cozinhaPorNome(String nome) {
 		return cozinhaRepository.findByNome(nome);
