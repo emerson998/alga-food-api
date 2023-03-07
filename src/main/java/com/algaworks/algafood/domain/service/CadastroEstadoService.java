@@ -1,8 +1,11 @@
 package com.algaworks.algafood.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,9 +43,15 @@ public class CadastroEstadoService {
 		}
 	}
 
+	@Cacheable("estado")
 	public Estado buscarEstadoPorId(Long estadoId) {
 		return estadoRepository.findById(estadoId)
 			.orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
+	}
+	
+	@CacheEvict(value = "estado", allEntries = true)
+	@Scheduled(fixedRateString = "${caching.ttl.estado:3600000}")
+	public void limparCacheEstado() {
 	}
 	
 }

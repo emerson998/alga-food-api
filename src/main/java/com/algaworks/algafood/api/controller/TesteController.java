@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algafood.api.model.CozinhaModel;
+import com.algaworks.algafood.api.model.CozinhaModelRecord;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.model.Restaurante;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
@@ -104,5 +105,20 @@ public class TesteController {
 	public List<Restaurante> restaurantesComFreteGratis(String nome) {
 		return restauranteRepository.findComFreteGratis(nome);
 	}
+	
+	@GetMapping("/projecao-tuple")
+	public List<CozinhaModel> buscarCozinhaProjectTuple() {
+		return service.buscarCozinhaProjectTuple();
+	}
+	
+	@GetMapping("/projecao-array-object")
+	public List<CozinhaModel> buscarCozinhaProjecaoVetorObject(){
+		return service.buscarCozinhaProjecaoVetorObject();
+	}
 
+	@GetMapping("/projecao-record")
+	public List<CozinhaModelRecord> buscarCozinhaRecord() {
+		return service.buscarCozinhaRecord();
+	}
+	
 }

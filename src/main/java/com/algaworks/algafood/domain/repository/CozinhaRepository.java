@@ -3,6 +3,8 @@ package com.algaworks.algafood.domain.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Tuple;
+
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -32,6 +34,13 @@ public interface CozinhaRepository extends JpaRepository<Cozinha, Long> {
 			+ " FROM Cozinha cozinha "
 			+ " LEFT JOIN cozinha.restaurantes restaurante ")
 	List<CozinhaModel> findAllCozinhaResultDto();
+
+	@Query(value =" SELECT cozinha.id as id ,cozinha.nome as nome FROM tb_cozinha cozinha " , nativeQuery = true)
+	List<Tuple> findAllNative();
+	
+	@Query(value =" SELECT cozinha.id as id ,cozinha.nome as nome FROM tb_cozinha cozinha " , nativeQuery = true)
+	List<Object[]> findAllNativeVetor();
+
 
 	
 
