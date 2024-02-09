@@ -36,7 +36,13 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 		
 		var criteria = builder.createQuery(Restaurante.class);
 		var root = criteria.from(Restaurante.class);
-
+		
+		
+		//se o resultado não for long ele traz no primeiro select dados da cozinha
+//		if(!criteria.getResultType().equals(Long.class)){
+//			root.fetch("cozinha");
+//		}
+		
 		var predicates = new ArrayList<Predicate>();
 		
 		if (StringUtils.hasText(nome)) {
