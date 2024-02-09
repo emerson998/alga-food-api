@@ -28,7 +28,7 @@ public class SpecificationTeste implements Specification<Cozinha>{
 		
 		var condicoes = new ArrayList<Predicate>();
 		
-		if(id!=null) {
+		if(id != null) {
 			Predicate equalId = criteriaBuilder.equal(root.get("id"), id);
 			condicoes.add(equalId);
 		}
