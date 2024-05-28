@@ -21,6 +21,52 @@ public class OrderList {
 		    }
 		}
 	}
-	
+	 
+//	 void ordenarPorDataDesc(List<CidadeModel> declaracoesReport) {
+//		 if (!declaracoesReport.isEmpty()) {
+//			 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//			 Collections.sort(declaracoesReport, new Comparator<CidadeModel>() {
+//				 @Override
+//				 public int compare(CidadeModel declaracao1, CidadeModel declaracao2) {
+//					 if (declaracao1.getData() != null && !declaracao1.getData().isBlank() &&
+//							 declaracao2.getData() != null && !declaracao2.getData().isBlank()) {
+//
+//						 LocalDate data1 = LocalDate.parse(declaracao1.getData(), formatter);
+//						 LocalDate data2 = LocalDate.parse(declaracao2.getData(), formatter);
+//
+//						 return data2.compareTo(data1);
+//					 }
+//
+//					 return 0;
+//				 }
+//			 });
+//
+//
+//		 }
+//	 }
+//
+//
+//	 void ordenarPorDataAsc(List<CidadeModel> declaracoesReport) {
+//		 if (!declaracoesReport.isEmpty()) {
+//			 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//			 Collections.sort(declaracoesReport, new Comparator<CidadeModel>() {
+//				 @Override
+//				 public int compare(CidadeModel declaracao1, CidadeModel declaracao2) {
+//					 if (declaracao1.getData() != null && !declaracao1.getData().isBlank() &&
+//							 declaracao2.getData() != null && !declaracao2.getData().isBlank()) {
+//
+//						 LocalDate data1 = LocalDate.parse(declaracao1.getData(), formatter);
+//						 LocalDate data2 = LocalDate.parse(declaracao2.getData(), formatter);
+//
+//						 return data1.compareTo(data2);
+//					 }
+//
+//					 return 0;
+//				 }
+//			 });
+//
+//
+//		 }
+//	 }
 	
 }
