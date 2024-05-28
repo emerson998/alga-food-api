@@ -6,7 +6,9 @@ import com.algaworks.algafood.api.model.CidadeModel;
 
 public class OrderList {
 
-	private static void orderList(List<CidadeModel> cidades) {
+	OrderList(){}
+	
+	 static void orderList(List<CidadeModel> cidades) {
 		for (int i = 0; i < cidades.size() - 1; ++i) {
 		    for (int j = i + 1; j < cidades.size(); ++j) {
 		    	CidadeModel tmp = cidades.get(i);
